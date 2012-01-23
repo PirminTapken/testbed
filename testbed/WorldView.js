@@ -15,19 +15,24 @@ testbed.WorldView = function(world)
 
 	var size = new Array(1024,768);
 
+	/*
 	this.appendChild(
 		new lime.Label().
 			setText("Hello World!").
 			setFontSize(30).
 			setFontFamily('fantasy').
 			setPosition(size[0] / 2, size[1] / 2));
+			*/
 
 	/** @private */
 	this.groundlayer_ = new lime.Layer().
-		setSize(size[0], size[1]);
-	for (i = 0; i < world.length; i++) {
-		this.groundlayer_.appendChild(new lime.Label().setText("grass!").setPosition(size[0] / world.length * i, 0));
-		world[0][i].setPosition(size[0] / world.length * i, 0);
+		setPosition(size[0]/2, size[1]/2);
+	console.info("Size of world: " + world.length);
+	for (var i = 0; i < world.length; i++) {
+		console.info("i: " + i);
+		this.groundlayer_.appendChild(new lime.Label().setText("grass!").setPosition(size[0] / world.length * i - size[0] / 2, 0));
+		//world[0][i].setPosition(size[0] / world.length * i, 0).setSize(size[0] / world.length);
+		world[0][i].setSize(size[0] / world.length);
 		this.groundlayer_.appendChild(world[0][i]);
 	}
 	this.appendChild(this.groundlayer_);
