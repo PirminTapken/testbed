@@ -19,10 +19,8 @@ goog.require('lime.transitions.MoveInUp');
 
 testbed.start = function()
 {
-	var director = new lime.Director(document.body, 640, 480),
-	    gamescene = new lime.Scene().
-		    appendChild(
-			new testbed.WorldView(testbed.world.generate(testbed.world))),
+	var director = new lime.Director(document.body, 1024, 768),
+	    gamescene =	new testbed.WorldView(testbed.world.generate(testbed.world)),
 	    menuscene = new testbed.MenuScene(gamescene);
 
 	director.replaceScene(menuscene, lime.transitions.MoveInUp);
