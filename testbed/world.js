@@ -1,5 +1,8 @@
 goog.provide('testbed.world');
 
+goog.require('lime.Sprite');
+goog.require('lime.fill.Image');
+
 /** @type {Array} */
 testbed.world = new Array();
 
