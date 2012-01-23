@@ -27,7 +27,7 @@ testbed.MenuScene = function(gameScene)
 		    setSize(300, 50).
 		    setRadius(10).
 		    appendChild(label).
-		    setPosition(320,240).
+		    setPosition(1024 / 2, 768 / 2).
 		    setStroke(5, 0, 223, 0).
 		    setFill(223, 223, 223);
 
