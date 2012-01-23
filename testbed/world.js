@@ -19,10 +19,10 @@ testbed.world.generate = function(world, size)
 		setFill(grassimg).
 		setStroke(1, 0, 0, 0);
 
-	for (i = 0; i < size; i++) {
-		sub = new Array();
+	for (var i = 0; i < size; i++) {
+		var sub = new Array();
 
-		for (j = 0; j < size; i++) {
+		for (var j = 0; j < size; j++) {
 			sub[j] = grasssprite;
 		}
 		world[i] = sub;
