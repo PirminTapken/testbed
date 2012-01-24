@@ -15,25 +15,25 @@ testbed.WorldView = function(world)
 
 	var size = new Array(1024,768);
 
-	/*
-	this.appendChild(
-		new lime.Label().
-			setText("Hello World!").
-			setFontSize(30).
-			setFontFamily('fantasy').
-			setPosition(size[0] / 2, size[1] / 2));
-			*/
-
 	/** @private */
 	this.groundlayer_ = new lime.Layer().
 		setPosition(size[0]/2, size[1]/2);
-	console.info("Size of world: " + world.length);
+
 	for (var i = 0; i < world.length; i++) {
-		console.info("i: " + i);
-		this.groundlayer_.appendChild(new lime.Label().setText("grass!").setPosition(size[0] / world.length * i - size[0] / 2, 0));
-		//world[0][i].setPosition(size[0] / world.length * i, 0).setSize(size[0] / world.length);
-		world[0][i].setSize(size[0] / world.length);
-		this.groundlayer_.appendChild(world[0][i]);
+		for (var j = 0; j < world.length; j++) {
+			/*
+			 * Ausgangsidee: 
+			 * var y = size[1] / world.length * j - size[1] / 2;
+			 * bildschirmgroesse durch anzahl der tiles - 50% der groesse ->
+			 * da sonst zentriert plaziert?
+			 * ergibt jedenfalls position abhaengig von der anzhahl der tiles
+			 */
+			var x = size[0] * ( i / world.length - 0.5);
+			var y = size[1] * ( j / world.length - 0.5);
+
+			world[j][i].setPosition(x, y);
+			this.groundlayer_.appendChild(world[j][i]);
+		}
 	}
 	this.appendChild(this.groundlayer_);
 }
