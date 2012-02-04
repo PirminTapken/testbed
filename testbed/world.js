@@ -10,18 +10,18 @@ testbed.world = new Array();
 /**
  * @private
  * @param {number} size of the world or numbers of sprite fitting on screen or shit
+ * @param {string} name of the image file / path
  * @return {lime.Sprite}
  */
-testbed.world.generateSprite_ = function(size)
+testbed.world.generateSprite_ = function(size, imagefile)
 {
-	var grassimg = new lime.fill.Image("./grass.png"),
-	    grasssprite = new lime.Sprite().
-		setFill(grassimg).
+	var img = new lime.fill.Image(imagefile),
+	    sprite = new lime.Sprite().
+		setFill(img).
 		setStroke(1, 0,0,0).
-		appendChild(new lime.Label().setText('grass!')).
 		setSize(testbed.WIDTH/size, testbed.HEIGHT/size).
 		setAnchorPoint(0,0);
-	return grasssprite;
+	return sprite;
 }
 
 /**
@@ -37,7 +37,15 @@ testbed.world.generate = function(world, size)
 		var sub = new Array();
 
 		for (var j = 0; j < size; j++) {
-			sub[j] = {sprite: testbed.world.generateSprite_(size)};
+			if (
+					(i == 1 && j == 1) ||
+					(i == size -1 && j == size -1) ||
+					(i == 1 && j == size -1) ||
+					(i == size -1 && j == 1)) {
+				sub[j] = {sprite: testbed.world.generateSprite_(size, "house.png")};
+			} else {
+				sub[j] = {sprite: testbed.world.generateSprite_(size, "grass.png")};
+			}
 		}
 		world[i] = sub;
 	}
