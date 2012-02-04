@@ -14,12 +14,13 @@ testbed.world = new Array();
  */
 testbed.world.generateSprite_ = function(size)
 {
-	var grassimg = new lime.fill.Image("./grass.jpg"),
+	var grassimg = new lime.fill.Image("./grass.png"),
 	    grasssprite = new lime.Sprite().
 		setFill(grassimg).
 		setStroke(1, 0,0,0).
 		appendChild(new lime.Label().setText('grass!')).
-		setSize(1024/size, 768/size);
+		setSize(testbed.WIDTH/size, testbed.HEIGHT/size).
+		setAnchorPoint(0,0);
 	return grasssprite;
 }
 
@@ -36,7 +37,7 @@ testbed.world.generate = function(world, size)
 		var sub = new Array();
 
 		for (var j = 0; j < size; j++) {
-			sub[j] = testbed.world.generateSprite_(size);
+			sub[j] = {sprite: testbed.world.generateSprite_(size)};
 		}
 		world[i] = sub;
 	}

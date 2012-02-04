@@ -13,26 +13,25 @@ testbed.WorldView = function(world)
 {
 	goog.base(this);
 
-	var size = new Array(1024,768);
 
 	/** @private */
 	this.groundlayer_ = new lime.Layer().
-		setPosition(size[0]/2, size[1]/2);
+		setPosition(testbed.WIDTH/2, testbed.HEIGHT/2);
 
 	for (var i = 0; i < world.length; i++) {
 		for (var j = 0; j < world.length; j++) {
 			/*
 			 * Ausgangsidee: 
-			 * var y = size[1] / world.length * j - size[1] / 2;
+			 * var y = testbed.HEIGHT / world.length * j - testbed.HEIHGT / 2;
 			 * bildschirmgroesse durch anzahl der tiles - 50% der groesse ->
 			 * da sonst zentriert plaziert?
 			 * ergibt jedenfalls position abhaengig von der anzhahl der tiles
 			 */
-			var x = size[0] * ( i / world.length - 0.5);
-			var y = size[1] * ( j / world.length - 0.5);
+			var x = testbed.WIDTH * ( i / world.length - 0.5);
+			var y = testbed.HEIGHT * ( j / world.length - 0.5);
 
-			world[j][i].setPosition(x, y);
-			this.groundlayer_.appendChild(world[j][i]);
+			world[j][i]['sprite'].setPosition(x, y);
+			this.groundlayer_.appendChild(world[j][i]['sprite']);
 		}
 	}
 	this.appendChild(this.groundlayer_);
