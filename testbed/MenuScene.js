@@ -23,7 +23,7 @@ testbed.MenuScene = function(menulist) {
   this.menulist_ = menulist;
   this.buttons_ = [];
 
-  goog.array.forEach(this.menuList_, function(item, idx) {
+  goog.array.forEach(this.menulist_, function(item, idx) {
     var button = this.makeButton_(item['title'], idx);
     this.getHandler().listen(buttons,
                        [goog.events.EventType.MOUSEDOWN, goog.events.EventType.TOUCHSTART],
