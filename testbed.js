@@ -1,67 +1,42 @@
-goog.provide('testbed.MenuScene');
+//set main namespace
+goog.provide('testbed');
 
-goog.require('goog.events');
-goog.require('goog.events.EventType');
 
-goog.require('lime.GlossyButton');
+//get requirements
+goog.require('testbed.MenuScene');
+goog.require('testbed.world');
+goog.require('testbed.WorldView');
+goog.require('testbed.TestBedScene');
+
+goog.require('lime.Director');
 goog.require('lime.Label');
+goog.require('lime.Layer');
 goog.require('lime.RoundedRect');
 goog.require('lime.Scene');
-goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.Sequence');
+goog.require('lime.animation.Resize');
+goog.require('lime.animation.ScaleTo');
+goog.require('lime.transitions.Dissolve');
+goog.require('lime.transitions.MoveInUp');
+
+testbed.WIDTH = 320;
+testbed.HEIGHT = 240;
+
+testbed.start = function()
+{
+	var director = new lime.Director(document.body, testbed.WIDTH, testbed.HEIGHT),
+	    gamescene =	new testbed.WorldView(testbed.world.generate(testbed.world, 10)),
+	    testbedscene = new testbed.TestBedScene();
+
+	var menulist = [
+		{scene: gamescene, title: "Start Game"},
+		{scene: testbedscene, title: "Start Testbed"}];
+
+	menuscene = new testbed.MenuScene(menulist);
+	director.replaceScene(menuscene, lime.transitions.MoveInUp);
+
+}
 
 
-
-/**
- * @constructor
- * @param {Array.<{scene: lime.Scene, title: string}>} list of menu items
- * @extends lime.Scene
- */
-testbed.MenuScene = function(menulist) {
-  goog.base(this);
-
-  this.menulist_ = menulist;
-  this.buttons_ = [];
-
-  goog.array.forEach(this.menuList_, function(item, idx) {
-    var button = this.makeButton_(item['title'], idx);
-    this.getHandler().listen(buttons,
-                       [goog.events.EventType.MOUSEDOWN, goog.events.EventType.TOUCHSTART],
-                       goog.partial(this.evtHandler, button, item['scene']),
-                       false,
-                       this);
-    this.appendChild(button);
-
-    this.buttons_[idx] = button;
-  }, this);
-};
-goog.inherits(testbed.MenuScene, lime.Scene);
-
-
-/**
- * @private
- *
- * @param {string} title
- * @param {number} idx
- */
-testbed.MenuScene.prototype.makeButton_ = function(title, idx) {
-  return new lime.GlossyButton(title).
-    setSize(testbed.WIDTH, testbed.HEIGHT / this.menulist_.length * 0.9).
-    setPosition(testbed.WIDTH / 2, testbed.HEIGHT / this.menulist_.length * (idx + 0.5));
-};
-
-
-
-/**
- * @private
- *
- * @param {lime.GlossyButton} button
- * @param {lime.Scene} followupScene
- * @param {goog.events.Event} evt
- */
-testbed.MenuScene.prototype.evtHandler_ = function(button, followupScene, evt) {
-  var sequence = new lime.animation.Sequence(new lime.animation.ScaleTo(1.1).setDuration(0.35),
-                                             new lime.animation.ScaleTo(1.0).setDuration(0.35))
-  button.runAction(sequence);
-  this.getDirector().replaceScene(followupScene, lime.transitions.Dissolve);
-};
+//this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
+goog.exportSymbol('testbed.start', testbed.start);
