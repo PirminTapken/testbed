@@ -26,6 +26,7 @@ testbed.start = function()
 {
 	var director = new lime.Director(document.body, testbed.WIDTH, testbed.HEIGHT),
 	    gamescene =	new testbed.WorldView(testbed.world.generate(testbed.world, 10)),
+	    //gamescene = new testbed.WorldView(testbed.myworld),
 	    testbedscene = new testbed.TestBedScene();
 
 	var menulist = [
