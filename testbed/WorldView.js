@@ -19,7 +19,8 @@ testbed.WorldView = function(world)
 		setPosition(testbed.WIDTH/2, testbed.HEIGHT/2);
 
 	for (var i = 0; i < world.length; i++) {
-		for (var j = 0; j < world.length; j++) {
+		for (var j = 0; j < world[i].length; j++) {
+			console.debug('i, j: ' + i + ', ' + j);
 			/*
 			 * Ausgangsidee: 
 			 * var y = testbed.HEIGHT / world.length * j - testbed.HEIHGT / 2;
@@ -28,10 +29,10 @@ testbed.WorldView = function(world)
 			 * ergibt jedenfalls position abhaengig von der anzhahl der tiles
 			 */
 			var x = testbed.WIDTH * ( i / world.length - 0.5);
-			var y = testbed.HEIGHT * ( j / world.length - 0.5);
+			var y = testbed.HEIGHT * ( j / world[i].length - 0.5);
 
-			world[j][i]['sprite'].setPosition(x, y);
-			this.groundlayer_.appendChild(world[j][i]['sprite']);
+			world[i][j]['sprite'].setPosition(x, y);
+			this.groundlayer_.appendChild(world[i][j]['sprite']);
 		}
 	}
 	this.appendChild(this.groundlayer_);
