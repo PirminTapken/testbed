@@ -1,4 +1,7 @@
 goog.provide('testbed.world');
+goog.provide('testbed.world.groundType');
+
+goog.require('goog.array');
 
 goog.require('lime.Sprite');
 goog.require('lime.fill.Image');
@@ -6,6 +9,9 @@ goog.require('lime.Label');
 
 /** @type {Array} */
 testbed.world = new Array();
+
+testbed.world.groundType = {};
+testbed.world.groundType.GRASS = 'grass';
 
 /**
  * @private
@@ -32,17 +38,18 @@ testbed.world.generateSprite_ = function(size, imagefile)
  */
 testbed.world.generate = function(world, size)
 {
-
 	for (var i = 0; i < size; i++) {
 		var sub = new Array();
 
 		for (var j = 0; j < size; j++) {
 			if (
 					(i == 1 && j == 1) ||
-					(i == size -1 && j == size -1) ||
-					(i == 1 && j == size -1) ||
-					(i == size -1 && j == 1)) {
+					(i == size -2 && j == size -2) ||
+					(i == 1 && j == size -2) ||
+					(i == size -2 && j == 1)) {
+
 				sub[j] = {sprite: testbed.world.generateSprite_(size, "house.png")};
+
 			} else {
 				sub[j] = {sprite: testbed.world.generateSprite_(size, "grass.png")};
 			}
@@ -51,3 +58,47 @@ testbed.world.generate = function(world, size)
 	}
 	return world;
 }
+// Somehow this myworld stuff does not work as of now :(
+testbed.myworld = [
+	goog.array.map(
+			new Array(32),
+			function(i)
+			{
+				return {
+					sprite: new testbed.world.generateSprite_(
+							16,
+						       	"grass.png"),
+				       	type: testbed.world.groundType.GRASS
+				};
+			}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};}),
+	goog.array.map(new Array(32), function(i) {return {sprite: new testbed.world.generateSprite_(16, "grass.png"), type: testbed.world.groundType.GRASS};})
+];
+console.debug('myworld: ' + testbed.myworld);
