@@ -22,10 +22,12 @@ testbed.world.groundType.GRASS = 'grass';
 testbed.world.generateSprite_ = function(size, imagefile)
 {
 	var img = new lime.fill.Image(imagefile),
+	    imagesize = (testbed.WIDTH < testbed.HEIGHT ? testbed.WIDTH : testbed.HEIGHT) / 15,
 	    sprite = new lime.Sprite().
 		setFill(img).
-		setStroke(1, 0,0,0).
-		setSize(testbed.WIDTH/size, testbed.HEIGHT/size).
+		//setStroke(0, 0,0,0).
+		//setSize(16, 16).
+		setSize(imagesize, imagesize).
 		setAnchorPoint(0,0);
 	return sprite;
 }
